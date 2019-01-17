@@ -16,9 +16,23 @@ print client.indices.exists(index)
 # print client.cluster.health(wait_for_status='yellow', request_timeout=1)
 
 # body = {"query":{"match":{"doc.userID":1}}}
-body = {"query": {"constant_score": {"filter": {"term": {"doc.userID": 1}}}}}
+body = {
+    "query": {
+        "constant_score": {
+            "filter": {
+                "term": {
+                    "doc.userID": 1
+                }
+            }
+        }
+    }
+}
 
 response = client.search(index=index, doc_type=type, body=body)
+
+count = response["hits"]["total"]
+
+print "获取总数:%s" % count
 
 for hit in response["hits"]["hits"]:
     print hit["_source"]['doc']
