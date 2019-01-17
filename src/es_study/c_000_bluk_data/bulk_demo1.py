@@ -7,12 +7,12 @@ from elasticsearch import helpers
 
 client = Elasticsearch("localhost:9200")
 
-levels = ['info', 'debug', 'warn', 'error']
+levels = ['今天是个好日子', '中国万岁', '天安门广场', '现在在那里干嘛呢？']
 actions = []
 for i in range(100):
     level = levels[random.randrange(0, len(levels))]
     action = {'_op_type': 'index',  # 操作 index update create delete  
-              '_index': 'log_level',
+              '_index': 'level',
               '_type': 'doc',
               '_source': {'level': level}}
     actions.append(action)
