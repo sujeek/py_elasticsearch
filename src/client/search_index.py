@@ -9,9 +9,6 @@ type = 'test-type'
 
 es = client = Elasticsearch("localhost:9200")
 
+print client.search(index, filter_path=['hits.hits._*'])
 
-
-
-
-# print client.search(index, filter_path=['hits.hits._*'])
-# print client.search(index, filter_path=['hits.hits._id', 'hits.hits._type'])
+print client.search(index, filter_path=['hits.hits._id', 'hits.hits._type'])
