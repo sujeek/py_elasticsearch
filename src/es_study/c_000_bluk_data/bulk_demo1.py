@@ -1,19 +1,19 @@
 #-*- encoding=utf-8 -*-
 
+import random
+
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 
 client = Elasticsearch("localhost:9200")
-print client
-import random
 
 levels = ['info', 'debug', 'warn', 'error']
 actions = []
 for i in range(100):
     level = levels[random.randrange(0, len(levels))]
     action = {'_op_type': 'index',  # 操作 index update create delete  
-              '_index': 'log_level',  # index
-              '_type': 'doc',  # type
+              '_index': 'log_level',
+              '_type': 'doc',
               '_source': {'level': level}}
     actions.append(action)
 
